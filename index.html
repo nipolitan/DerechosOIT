@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Derechos Fundamentales OIT</title>
+    <!-- Tailwind CSS para diseño moderno y responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para soporte visual accesible -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .section-enter {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-active { border-color: #2563eb; color: #2563eb; font-weight: bold; }
+        
+        /* Accesibilidad: Focus visible para navegación por teclado */
+        :focus {
+            outline: 3px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Estilo para la barra de progreso personalizada */
+        .progress-bar-fill {
+            transition: width 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Barra de Progreso -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center mb-2">
+                <h1 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i data-lucide="shield-check" class="text-blue-600"></i>
+                    Derechos Fundamentales en el Trabajo
+                </h1>
+                <span id="score-display" class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">
+                    Puntos: 0
+                </span>
+            </div>
+            <div class="w-full bg-slate-200 rounded-full h-2.5">
+                <div id="main-progress" class="bg-blue-600 h-2.5 rounded-full progress-bar-fill" style="width: 5%"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl mx-auto w-full p-4 md:p-8">
+        
+        <!-- MICRO 1: EL RETO (Captar atención y recordar) -->
+        <section id="micro-1" class="section-enter space-y-6">
+            <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg shadow-sm">
+                <div class="flex items-start gap-4">
+                    <div class="bg-blue-600 p-3 rounded-lg text-white">
+                        <i data-lucide="alert-circle"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-blue-900 mb-2">Momento 1: El Desafío del Día</h2>
+                        <p class="text-blue-800 leading-relaxed">
+                            ¿Sabías que millones de personas en el mundo trabajan en condiciones que vulneran su dignidad humana? Como futuro profesional, tu capacidad para identificar y defender estos derechos no es solo un requisito legal, es la base de la <strong>Justicia Social</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <i data-lucide="lightbulb" class="text-yellow-500"></i>
+                            Recuerdo de Saberes
+                        </h3>
+                        <p class="text-slate-600 mb-4 italic text-sm border-l-2 border-slate-200 pl-4">
+                            "Antes de empezar, reflexiona: ¿Has escuchado alguna vez sobre el trabajo infantil o la discriminación laboral en tu entorno?"
+                        </p>
+                        <p class="text-slate-600 mb-6">
+                            Para enfrentar el reto, primero debemos reconocer los pilares que la OIT ha establecido para proteger a cada trabajador a nivel global.
+                        </p>
+                    </div>
+                    <button onclick="nextMicro(2)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg transition-all transform hover:scale-[1.02] flex justify-center items-center gap-2">
+                        Aceptar el Reto <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+                <!-- Imagen solicitada por el usuario -->
+                <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center overflow-hidden">
+                    <img src="Imagenes\OIT principios y derechos fundamentales_Página_1.png" alt="Principios y Derechos Fundamentales OIT" class="max-w-full h-auto rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800'; console.warn('No se encontró la imagen local, cargando fallback.');">
+                </div>
+            </div>
+        </section>
+
+        <!-- MICRO 2: EL CONTENIDO (Objetivos y Teoría Interactiva) -->
+        <section id="micro-2" class="hidden section-enter space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800">Principios Fundamentales OIT</h2>
+                <p class="text-slate-500 mt-2">Explora los 5 pilares que garantizan el trabajo decente en todo el mundo.</p>
+            </div>
+
+            <!-- Tabs de Contenido -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
+                <div class="flex flex-wrap border-b border-slate-200 bg-slate-50">
+                    <button onclick="showTab(0)" class="tab-btn p-4 flex-1 font-medium text-sm hover:bg-white transition-colors border-b-2 border-transparent active-tab" data-index="0">1. Libertad Sindical</button>
+                    <button onclick="showTab(1)" class="tab-btn p-4 flex-1 font-medium text-sm hover:bg-white transition-colors border-b-2 border-transparent" data-index="1">2. Trabajo Forzoso</button>
+                    <button onclick="showTab(2)" class="tab-btn p-4 flex-1 font-medium text-sm hover:bg-white transition-colors border-b-2 border-transparent" data-index="2">3. Trabajo Infantil</button>
+                    <button onclick="showTab(3)" class="tab-btn p-4 flex-1 font-medium text-sm hover:bg-white transition-colors border-b-2 border-transparent" data-index="3">4. Discriminación</button>
+                    <button onclick="showTab(4)" class="tab-btn p-4 flex-1 font-medium text-sm hover:bg-white transition-colors border-b-2 border-transparent" data-index="4">5. Seguridad y Salud</button>
+                </div>
+                
+                <div id="tab-content" class="p-8">
+                    <!-- El contenido se inyecta vía JS -->
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-6">
+                <button onclick="nextMicro(1)" class="text-slate-500 hover:text-slate-700 font-medium">Volver</button>
+                <button onclick="nextMicro(3)" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold shadow-md">Continuar a la Práctica</button>
+            </div>
+        </section>
+
+        <!-- MICRO 3: LA APLICACIÓN (Actividad Práctica) -->
+        <section id="micro-3" class="hidden section-enter space-y-6">
+            <div class="bg-slate-800 text-white p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4">Simulador de Decisiones Laborales</h2>
+                <p class="text-slate-300 mb-6">Lee la situación y selecciona la acción que mejor proteja los Derechos Fundamentales.</p>
+                
+                <div class="bg-white text-slate-800 p-6 rounded-xl mb-6 border-l-8 border-yellow-500">
+                    <h4 class="font-bold text-lg mb-2">Caso: "El Contrato Emergente"</h4>
+                    <p>Una empresa constructora necesita terminar un proyecto. El supervisor le dice a un grupo de trabajadores que <strong>no pueden irse a casa</strong> hasta que terminen, y que si se quejan o intentan hablar con un sindicato, serán despedidos de inmediato.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <button onclick="checkApp(false, '¡Cuidado! Aceptar horas extras bajo amenaza de despido es una forma de trabajo forzoso.')" class="w-full text-left p-4 rounded-lg border border-slate-600 hover:bg-slate-700 transition-colors">
+                        A. Aceptar las condiciones para no perder el empleo.
+                    </button>
+                    <button onclick="checkApp(true, '¡Excelente! Has identificado la violación a la Libertad Sindical y la prohibición de Trabajo Forzoso.')" class="w-full text-left p-4 rounded-lg border border-slate-600 hover:bg-slate-700 transition-colors">
+                        B. Denunciar la situación, ya que viola la Libertad Sindical y prohíbe el Trabajo Forzoso.
+                    </button>
+                    <button onclick="checkApp(false, 'No es correcto. El supervisor no tiene derecho legal a retener trabajadores contra su voluntad.')" class="w-full text-left p-4 rounded-lg border border-slate-600 hover:bg-slate-700 transition-colors">
+                        C. Ignorar el comentario y seguir trabajando normalmente.
+                    </button>
+                </div>
+
+                <div id="app-feedback" class="mt-6 hidden p-4 rounded-lg"></div>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="nextMicro(2)" class="text-slate-500">Atrás</button>
+                <button id="btn-to-eval" onclick="nextMicro(4)" class="hidden bg-green-600 text-white px-8 py-3 rounded-lg font-bold">Reforzar y Evaluar</button>
+            </div>
+        </section>
+
+        <!-- MICRO 4: EVALUACIÓN Y GAMIFICACIÓN -->
+        <section id="micro-4" class="hidden section-enter space-y-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-800">Cierre y Evaluación</h2>
+                <p class="text-slate-500 mt-2">Repasa los conceptos clave con este resumen visual antes del test final.</p>
+            </div>
+
+            <!-- Espacio del Video -->
+            <div class="max-w-3xl mx-auto bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                <div class="aspect-video relative group">
+                    <video id="intro-video" class="w-full h-full" controls>
+                        <source src="Videos\Los_5_Principios_del_Trabajo.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                </div>
+                <div class="bg-slate-800 p-4 text-center">
+                    <p class="text-slate-300 text-sm italic">Video: Los 5 Principios Fundamentales del Trabajo</p>
+                </div>
+            </div>
+
+            <div id="quiz-section-wrapper" class="space-y-8 mt-12">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-slate-800">Validación de Competencias</h3>
+                    <p class="text-slate-500">Responde correctamente para obtener tu insignia.</p>
+                </div>
+
+                <div id="quiz-container" class="max-w-2xl mx-auto space-y-6">
+                    <!-- Preguntas dinámicas -->
+                </div>
+            </div>
+
+            <div id="final-results" class="hidden text-center p-10 bg-white rounded-3xl shadow-xl border border-blue-100">
+                <div class="mb-6 flex justify-center">
+                    <div class="bg-yellow-100 p-6 rounded-full">
+                        <i data-lucide="award" class="w-16 h-16 text-yellow-600"></i>
+                    </div>
+                </div>
+                <h3 class="text-3xl font-bold text-slate-800 mb-2">¡Misión Cumplida!</h3>
+                <p class="text-slate-600 text-lg mb-6">Has demostrado dominio sobre los Principios de la OIT.</p>
+                <div id="badge-container" class="inline-block p-4 bg-blue-50 border-2 border-blue-200 rounded-xl mb-8">
+                    <p class="text-blue-800 font-bold">INSIGNIA: DEFENSOR LABORAL</p>
+                    <p class="text-blue-600 text-sm">Otorgada por completar el 100% de la guía.</p>
+                </div>
+                <button onclick="location.reload()" class="block w-full bg-slate-800 text-white py-3 rounded-lg font-bold">Reiniciar Guía</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Pedagógico -->
+    <footer class="bg-slate-100 py-6 mt-12 border-t border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm font-medium">Guía de Aprendizaje SENA - Basada en la Declaración de la OIT 1998 (Actualizada 2022)</p>
+        </div>
+    </footer>
+
+    <!-- MODAL DE NOTIFICACIÓN (Accesible) -->
+    <div id="modal-feedback" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-[100] p-4" role="alertdialog" aria-modal="true">
+        <div class="bg-white p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl">
+            <div id="modal-icon" class="mb-4 flex justify-center"></div>
+            <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
+            <p id="modal-body" class="text-slate-600 mb-6"></p>
+            <button onclick="closeModal()" class="bg-blue-600 text-white w-full py-2 rounded-lg font-bold">Entendido</button>
+        </div>
+    </div>
+
+    <script>
+        // --- ESTADO GLOBAL ---
+        let state = {
+            currentMicro: 1,
+            score: 0,
+            progress: 5,
+            completedSteps: new Set(),
+            theoryTab: 0
+        };
+
+        const theoryData = [
+            {
+                title: "Libertad de Asociación y Sindicación",
+                content: "El derecho de los trabajadores y empleadores a formar organizaciones para defender sus intereses, sin autorización previa.",
+                icon: "users",
+                tip: "Garantiza el diálogo social y la negociación colectiva."
+            },
+            {
+                title: "Eliminación del Trabajo Forzoso",
+                content: "Prohíbe todo trabajo o servicio exigido bajo amenaza de una pena o para el cual la persona no se haya ofrecido voluntariamente.",
+                icon: "lock",
+                tip: "Incluye la trata de personas y el trabajo por deuda."
+            },
+            {
+                title: "Abolición del Trabajo Infantil",
+                content: "Protección a menores para que no realicen labores que afecten su desarrollo físico, mental o su escolaridad.",
+                icon: "baby",
+                tip: "La edad mínima no debe ser inferior a la de escolaridad obligatoria."
+            },
+            {
+                title: "Eliminación de la Discriminación",
+                content: "Igualdad de oportunidades y de trato en el empleo y la ocupación, sin distinción de raza, género, religión o ideas.",
+                icon: "scale",
+                tip: "Fomenta entornos laborales diversos e inclusivos."
+            },
+            {
+                title: "Entorno de Trabajo Seguro y Saludable",
+                content: "Derecho a trabajar en condiciones que no pongan en riesgo la integridad física ni la salud mental. (Incluido en 2022).",
+                icon: "heart-pulse",
+                tip: "La prevención de riesgos es una responsabilidad compartida."
+            }
+        ];
+
+        const quizQuestions = [
+            {
+                q: "¿Cuál de estos derechos fue el último en ser reconocido como fundamental por la OIT?",
+                a: ["Trabajo Infantil", "Seguridad y Salud en el Trabajo", "Libertad Sindical"],
+                correct: 1
+            },
+            {
+                q: "La Libertad Sindical permite a los trabajadores:",
+                a: ["Ignorar las normas de la empresa", "Organizarse para negociar condiciones", "No trabajar los lunes"],
+                correct: 1
+            }
+        ];
+
+        // --- LÓGICA DE NAVEGACIÓN ---
+        function nextMicro(num) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`micro-${num}`).classList.remove('hidden');
+            state.currentMicro = num;
+            updateProgress(num * 25);
+            
+            if(num === 2) loadTheoryTab(0);
+            if(num === 4) initQuiz();
+            
+            window.scrollTo(0,0);
+        }
+
+        function updateProgress(val) {
+            state.progress = val;
+            document.getElementById('main-progress').style.width = `${val}%`;
+        }
+
+        // --- LÓGICA MICRO 2: TEORÍA ---
+        function showTab(idx) {
+            loadTheoryTab(idx);
+            document.querySelectorAll('.tab-btn').forEach((b, i) => {
+                if(i === idx) {
+                    b.classList.add('border-blue-600', 'text-blue-600', 'bg-white');
+                } else {
+                    b.classList.remove('border-blue-600', 'text-blue-600', 'bg-white');
+                }
+            });
+        }
+
+        function loadTheoryTab(idx) {
+            const item = theoryData[idx];
+            const container = document.getElementById('tab-content');
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-8 items-center animate-fadeIn">
+                    <div class="bg-blue-100 p-6 rounded-3xl text-blue-600">
+                        <i data-lucide="${item.icon}" class="w-16 h-16"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">${item.title}</h3>
+                        <p class="text-slate-600 text-lg mb-4">${item.content}</p>
+                        <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-100 text-yellow-800 text-sm flex items-center gap-2">
+                            <i data-lucide="info" class="w-4 h-4"></i> <strong>Tip Técnico:</strong> ${item.tip}
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // --- LÓGICA MICRO 3: PRÁCTICA ---
+        function checkApp(isCorrect, feedback) {
+            const div = document.getElementById('app-feedback');
+            div.classList.remove('hidden', 'bg-green-100', 'bg-red-100');
+            div.classList.add(isCorrect ? 'bg-green-100' : 'bg-red-100');
+            div.innerHTML = `<p class="${isCorrect ? 'text-green-800' : 'text-red-800'} font-bold">${isCorrect ? '✅ ¡Correcto!' : '❌ Inténtalo de nuevo.'}</p><p class="text-sm">${feedback}</p>`;
+            
+            if(isCorrect && !state.completedSteps.has('practice')) {
+                updateScore(50);
+                state.completedSteps.add('practice');
+                document.getElementById('btn-to-eval').classList.remove('hidden');
+            }
+        }
+
+        // --- LÓGICA MICRO 4: EVALUACIÓN ---
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizQuestions.map((q, qIdx) => `
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-slate-800 mb-4">${qIdx + 1}. ${q.q}</p>
+                    <div class="space-y-2">
+                        ${q.a.map((opt, oIdx) => `
+                            <button onclick="handleQuizAnswer(${qIdx}, ${oIdx}, this)" class="w-full text-left p-3 rounded-lg border border-slate-100 hover:border-blue-300 hover:bg-blue-50 transition-all">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let answeredQuestions = 0;
+        function handleQuizAnswer(qIdx, oIdx, btn) {
+            const q = quizQuestions[qIdx];
+            const isCorrect = oIdx === q.correct;
+            
+            // Deshabilitar botones de esa pregunta
+            btn.parentElement.querySelectorAll('button').forEach(b => b.disabled = true);
+            
+            if(isCorrect) {
+                btn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                updateScore(25);
+            } else {
+                btn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                showModal('Pista', 'Recuerda que la Declaración se actualizó recientemente para proteger la salud de los trabajadores.', 'help-circle');
+            }
+
+            answeredQuestions++;
+            if(answeredQuestions === quizQuestions.length) {
+                setTimeout(showFinalResults, 1000);
+            }
+        }
+
+        function updateScore(points) {
+            state.score += points;
+            document.getElementById('score-display').innerText = `Puntos: ${state.score}`;
+        }
+
+        function showFinalResults() {
+            document.getElementById('quiz-section-wrapper').classList.add('hidden');
+            document.getElementById('final-results').classList.remove('hidden');
+            updateProgress(100);
+            showModal('¡Felicidades!', 'Has completado la formación y ganado tu insignia digital.', 'award');
+        }
+
+        // --- SISTEMA DE MODALES ---
+        function showModal(title, body, icon) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = body;
+            document.getElementById('modal-icon').innerHTML = `<i data-lucide="${icon}" class="w-12 h-12 text-blue-600"></i>`;
+            document.getElementById('modal-feedback').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('modal-feedback').classList.add('hidden');
+        }
+
+        // Inicialización
+        window.onload = () => {
+            lucide.createIcons();
+            showTab(0);
+        };
+    </script>
+</body>
+</html>
